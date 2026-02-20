@@ -1,0 +1,16 @@
+[project]
+name = "pdp"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "h2o>=3.46.0.9",
+    "jupyter>=1.1.1",
+    "jupyterlab>=4.5.4",
+    "matplotlib>=3.10.8",
+    "numpy<2",
+    "pandas<3",
+    "papermill>=2.6.0",
+    "scipy>=1.17.0",
+]
