@@ -19,7 +19,7 @@ Rashomom PDP uses models solely based on their performance. My idea was that div
 
 ![PDP extrapolation](pdp_extrapol.png)
 
-Here we can also see that using "Best of Family" models also doesn't perform well. So I tried using intersection of models in the Rashomon set ($\vareps = 0.05$) and the "Best of Family".
+Here we can also see that using "Best of Family" models also doesn't perform well. So I tried using intersection of models in the Rashomon set ($\varepsilon = 0.05$) and the "Best of Family".
 
 So I have tested following scenarios:
 
