@@ -2,7 +2,11 @@
 
 Quick and dirty exploration of ideas from [1].
 
-> **NOTE:**  This is done just to satisfy my curiosity, expect mistakes. I tried to make it as reproducible as possible but due to setting `max_runtime_secs` and running on my old personal laptop from 2012 you might end up with different results
+> **NOTE:**  This is done just to satisfy my curiosity, expect mistakes. I tried to make it as reproducible as possible but due to setting `max_runtime_secs` and running on my old personal laptop from 2012 you might end up with different results.
+
+**UPDATE**: I reran the experiments for all the configurations and I changed the transformation of X1 in scenario 3 to be more similar to the one in the paper. Previously I used `np.exp(np.cos(5*X1*np.pi))` which is much "wilder" than the sigmoid like function used in the paper. 
+
+Previous version is available [here](https://github.com/freedatoms/rashomon_pdp_experiment/tree/c4f1fd0c75a41bfb9f8d01967f50fad797ca07bf).
 
 ## Structure
 
@@ -37,9 +41,12 @@ Since there are those potential extrapolation issues I decided to look at the fu
 
 ## Results
 
-Due to time constraints (`max_runtime_secs`) Stacked Ensembles are not always present so they might look much better than they really are. Stacked Ensembles failed to train in my case due to time constraints in roughly 2/3 cases.
+Due to time constraints (`max_runtime_secs`) Stacked Ensembles are not always present so they might look much better than they really are. Stacked Ensembles failed to train in my case due to time constraints in roughly 1/4 cases.
 
 Nevertheless it seems possible to me that Stacked Ensembles could be this good as they try to combine models so that they generalize better in more sophisticated way than just picking models above some threshold or looking at their type. More evaluation results are in [03_evaluation.ipynb](03_evaluation.ipynb). 
+
+**UPDATE:** I also looked at performance in different noise levels. Generally speaking, it seems to me that Rashomon behaves better when there is lower amount of noise. This can be demonstrated by both looking at inner vs outer halves of the PDP and different noise levels. In the inner half, models tend to agree likely due to higher training data density => lower variance in PDPs. In the [noise level == 3](#Noise-level-==-3-(error-variance-=-9)), the Rashomon is significantly worse than the "Rashomon intersected with Best of Family".
+
 
 ![Average ranks in whole region](avg_ranks_full_range.png)
 
@@ -47,6 +54,31 @@ Nevertheless it seems possible to me that Stacked Ensembles could be this good a
 
 ![Average ranks in outer quartiles](avg_ranks_outer_half.png)
 
+### Noise level == 1
+
+![Average ranks in whole region](avg_ranks_full_range_noise_1.png)
+
+![Average ranks in inner quartiles](avg_ranks_inner_half_noise_1.png)
+
+![Average ranks in outer quartiles](avg_ranks_outer_half_noise_1.png)
+
+
+### Noise level == 2 (error variance = 4)
+
+![Average ranks in whole region](avg_ranks_full_range_noise_4.png)
+
+![Average ranks in inner quartiles](avg_ranks_inner_half_noise_4.png)
+
+![Average ranks in outer quartiles](avg_ranks_outer_half_noise_4.png)
+
+
+### Noise level == 3 (error variance = 9)
+
+![Average ranks in whole region](avg_ranks_full_range_noise_9.png)
+
+![Average ranks in inner quartiles](avg_ranks_inner_half_noise_9.png)
+
+![Average ranks in outer quartiles](avg_ranks_outer_half_noise_9.png)
 
 ## References
 [1] M. Cavus, J. N. van Rijn, a P. Biecek, „Quantifying Model Uncertainty with AutoML and Rashomon Partial Dependence Profiles: Enabling Trustworthy and Human-centered XAI“, Inf Syst Front, Feb. 2026, doi: 10.1007/s10796-026-10698-3. https://doi.org/10.1007/s10796-026-10698-3

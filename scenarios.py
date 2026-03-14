@@ -10,6 +10,6 @@ def gt_scenario_2(X1,X2,X3,X4,X5,X6,X7,X8,X9):
 
 def gt_scenario_3(X1,X2,X3,X4,X5,X6,X7,X8,X9):
     def f(x):
-        return np.exp(np.cos(5*x*np.pi))
+        return 0.08*np.where(x>=0, 0.5*np.tanh(x)+0.1*np.sqrt(np.abs(x)), -np.sqrt(np.abs(2*x))) + 0.85
     return f(X1) + 2*X2+0.5*np.exp(-(X3*X3))+0.7*np.sin(np.pi*X4)+0.6*X5**0.3+np.where(X6=='C',3,0)+\
          0.9*X7+1.2*X9
