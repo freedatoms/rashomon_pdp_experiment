@@ -2,7 +2,7 @@ import papermill as pm
 
 def main():
     for configuration in [chr(i) for i in range(ord('A'), ord('P')+1)]:
-        for scenario in [1, 2, 3]:
+        for scenario in [1,2,3]:
             for eps_var in [1, 4, 9]:
                 print(f"Running experiment {configuration}: {scenario}, noise level={eps_var}")
                 try:
